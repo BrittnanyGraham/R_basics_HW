@@ -1,0 +1,67 @@
+---
+title: "Homework_R_Basics"
+author: "Brittnany_Graham"
+date: "1/15/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+
+```{Question_1}
+#Question_1
+tgpp <- read.csv('./R_basics_HW.csv')
+dat <- tgpp
+names(dat)
+
+#Question_2
+dim(dat)
+
+#Question_3
+class(dat[,1])
+class(dat[,2])
+class(dat[,3])
+class(dat[,4])
+class(dat[,5])
+class(dat[,6])
+class(dat[,7])
+class(dat[,8])
+class(dat[,9])
+class(dat[,10])
+class(dat[,11])
+
+#Question_4
+dat[1, 3]
+dat[5, 7]
+dat[8, 10]
+
+#Question_5 
+plot(richness ~ scale, data = dat)
+
+```
+
+
+
