@@ -1,0 +1,95 @@
+---
+title: "Homework_2"
+author: "Brittnany_Graham"
+date: "1/17/2020"
+output: pdf_document
+---
+```{r}
+data(iris)
+head(iris)
+sp_ids = unique(iris$Species) #returns the vector nested within the dataset
+#output wants the row named 'length' of species, and the numbers in that column
+output = matrix(0, nrow=length(sp_ids), ncol=ncol(iris)-1)
+rownames(output) = sp_ids
+colnames(output) = names(iris[ , -ncol(iris)])
+
+for(i in seq_along(sp_ids)) {
+  #sets up the matrix with the header names
+  iris_sp = subset(iris, subset=Species == sp_ids[i], select=-Species)
+  for(j in 1:(ncol(iris_sp))) {
+    x = 0
+    y = 0
+##if the numbers of each row in iris_sp is greater than zero, then..
+    if (nrow(iris_sp) > 0) {
+      for(k in 1:nrow(iris_sp)) {
+        x = x + iris_sp[k, j]
+        y = y + 1
+      }
+      ##means of each species
+      output[i, j] = x / y 
+    }
+  }
+}
+output
+```
+
+```
+
+```{r}
+sp_ids = unique(iris$Species)
+
+output = matrix(0, nrow=length(sp_ids), ncol=ncol(iris)-1)
+rownames(output) = sp_ids
+colnames(output) = names(iris[ , -ncol(iris)])
+
+for(i in seq_along(sp_ids)) {
+    iris_sp = subset(iris, subset=Species == sp_ids[i], select=-Species)
+    for(j in 1:(ncol(iris_sp))) {
+        sum_trait = 0
+        recordings = 0
+        if (nrow(iris_sp) > 0) {
+            for(k in 1:nrow(iris_sp)) {
+                sum_trait = sum_trait + iris_sp[k, j]
+                recordings = recordings + 1
+            }
+            output[i, j] = sum_traits / recordings 
+        }
+    }
+}
+output
+
+#4
+sp_ids = unique(iris$Species)
+
+output = matrix(0, nrow=length(sp_ids), ncol=ncol(iris)-1)
+rownames(output) = sp_ids
+colnames(output) = names(iris[ , -ncol(iris)])
+
+mean = matrix(0, nrow = length(sp_ids), ncol = ncol(iris)-1)
+rownames(mean) = sp_ids
+colnames(mean) = names(iris [ , -col(iris)])
+
+apply(iris[ , -5], 2, function(trait) tapply(trait, iris$Species, mean))
+
+
+#5
+x <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+for(i in x) {
+y = sum(x[1:i])
+if (y <= 10) {
+print (y)
+} else if (y > 10) {
+print("NA")
+}
+}
+
+#6
+for(i in x) {
+y = sum(x[1:i])
+if (y > 10) {
+print ("NA")
+} else if (y < 10) {
+print("y")
+}
+}
