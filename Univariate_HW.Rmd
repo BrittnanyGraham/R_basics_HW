@@ -1,0 +1,66 @@
+---
+title: "Univariate_Modelling_HW"
+author: "Brittnany_Graham"
+date: "1/30/2020"
+output: html_document
+---
+
+trees <- read.csv('https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/data/treedata_subset.csv')
+str(trees)
+
+tapply(thing you want to summarize, list(group1, group2), function to use)
+
+str(trees)
+?aggregate
+
+aggregate(trees[ , c('elev', )], trees$beers, mean)
+?aggregate
+aggregate(trees, "site", )
+anova(trees$tci, type = 3)
+
+
+aggregate(trees[ , c('cover', 'elev')], trees$beers, mean)
+
+
+
+#changing an NA to 0
+#use if else (is.na(mat), 0, mat)
+#where mat = matrix like tree cover
+
+frasier <- trees[trees$spcode == "ABIEFRA", ]
+abiefra
+trees$spcode
+
+red_maple <- trees[trees$spcode == "ACERRUB", ]
+
+summary(red_maple)
+summary(frasier)
+
+rm_mod = lm(cover ~ 1, data = red_maple)
+rm_mod
+anova(rm_mod)
+ 
+frasier_mod = lm(cover ~ 1, data = frasier)
+frasier_mod
+anova(frasier_mod)
+
+summary(rm_mod)
+summary(frasier_mod)
+
+#cover and elevation are the most imporant variables
+#No
+#Yes. We are able to tell the variance better in Red Maple because the data set has higher number of values
+
+#2
+acer_poi = glm(cover ~ tci + elev + streamdist + beers + disturb, data = red_maple, family = 'poisson')
+
+acer_poi
+
+pseudo_r2 = function(glm_mod) {
+1 - glm_mod$deviance / glm_mod$null.deviance
+}
+pseudo_r2
+pseudo_r2(acer_poi)
+
+
+
